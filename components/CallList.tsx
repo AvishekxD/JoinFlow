@@ -8,6 +8,14 @@ import MeetingCard from "./MeetingCard";
 import Loader from "./Loader";
 import { toast } from "sonner";
 
+const isCall = (meeting: Call | CallRecording): meeting is Call => {
+    return 'state' in meeting;
+};
+
+const isCallRecording = (meeting: Call | CallRecording): meeting is CallRecording => {
+    return 'filename' in meeting;
+};
+
 const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
     const { endedCalls, upcomingCalls, callRecordings, isLoading } = useGetCalls();
     const router = useRouter();
@@ -65,28 +73,47 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
 
     return (
         <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
-            {calls && calls.length > 0 ? calls.map((meeting:
-                Call | CallRecording) => (
-                    <MeetingCard
-                        key={(meeting as Call).id || (meeting as CallRecording).recordingId} 
-                        icon={
-                            type === 'ended'
-                            ? '/icons/previous.svg'
-                            : type === 'upcoming'
-                            ? '/icons/upcoming.svg'
-                            : '/icons/recordings.svg'
+            {calls && calls.length > 0 ? calls.map((meeting: Call | CallRecording) => (
+                <MeetingCard
+                    key={isCall(meeting) ? meeting.id : meeting.url}
+                    icon={
+                        type === 'ended'
+                        ? '/icons/previous.svg'
+                        : type === 'upcoming'
+                        ? '/icons/upcoming.svg'
+                        : '/icons/recordings.svg'
+                    }
+                    title={
+                        isCall(meeting) 
+                            ? meeting.state?.custom?.description?.substring(0, 26) || 'Personal Meeting'
+                            : meeting.filename?.substring(0, 20) || 'Personal Meeting'
+                    }
+                    date={
+                        isCall(meeting)
+                            ? meeting.state?.startsAt?.toLocaleString() || 'N/A'
+                            : meeting.start_time?.toLocaleString() || 'N/A'
+                    }
+                    isPreviousMeeting={type === 'ended'}
+                    buttonIcon1={type === 'recordings' ? '/icons/play.svg' : undefined}
+                    buttonText={type === 'recordings' ? 'Play' : 'Start'}
+                    handleClick={() => {
+                        if (type === 'recordings' && isCallRecording(meeting)) {
+                            router.push(meeting.url);
+                        } else if (isCall(meeting)) {
+                            router.push(`/meeting/${meeting.id}`);
                         }
-                        title={(meeting as Call).state?.custom?.description?.substring(0, 26) || (meeting as CallRecording)?.filename?.substring(0,20) || 'Personal Meeting'}
-                        date={(meeting as Call).state?.startsAt?.toLocaleString() || (meeting as CallRecording)?.start_time?.toLocaleString() || 'N/A'}
-                        isPreviousMeeting={type === 'ended'}
-                        buttonIcon1={type === 'recordings' ? '/icons/play.svg' : undefined}
-                        buttonText={type === 'recordings' ? 'Play' : 'Start'}
-                        handleClick={type === 'recordings' ? () => router.push(`${(meeting as CallRecording).url}`) : () => router.push(`/meeting/${(meeting as Call).id}`)}
-                        link={type === 'recordings' ? (meeting as CallRecording).url : `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${(meeting as Call).id}`}
-                    />
-                )) : (
-                    <h1>{NoCallsMessage}</h1>
-                )}
+                    }}
+                    link={
+                        type === 'recordings' && isCallRecording(meeting)
+                            ? meeting.url
+                            : isCall(meeting)
+                            ? `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${meeting.id}`
+                            : '#'
+                    }
+                />
+            )) : (
+                <h1>{NoCallsMessage}</h1>
+            )}
         </div>
     )
 };

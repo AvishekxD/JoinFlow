@@ -3,10 +3,7 @@ import React, { ReactNode } from 'react'
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
-    DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog"
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
@@ -36,7 +33,7 @@ const MeetingModel = ({isOpen, onClose, title, className, children, handleClick,
                     <Image src={image} alt="image" width={72} height={72} />
                 </div>
             )}
-            <h1 className={cn('flex text-3xl justify-center font-bold leading-[42px]', className="")}>{title}</h1>
+            <h1 className={cn('flex text-3xl justify-center font-bold leading-[42px]', className)}>{title}</h1>
             {children}
             <Button className="bg-[#0E78F9] focus-visible:ring-0 focus-visible:ring-offset-0" onClick={handleClick}>
                 {buttonIcon && (

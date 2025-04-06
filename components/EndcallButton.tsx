@@ -14,7 +14,7 @@ const EndcallButton = () => {
 
   const isMeetingOwner = React.useMemo(() => {
     return localParticipant && call?.state.createdBy && localParticipant.userId === call.state.createdBy.id;
-  }, [localParticipant, call?.state.createdBy, call?.state.createdBy?.id, localParticipant?.userId]);
+  }, [localParticipant, call?.state.createdBy]);
 
   if (!isMeetingOwner) return null;
 
