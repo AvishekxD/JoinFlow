@@ -1,4 +1,3 @@
-//@ts-nocheck
 'use client';
 
 import { useGetCalls } from "@/hooks/useGetCalls";
@@ -8,7 +7,6 @@ import { useEffect, useState } from 'react';
 import MeetingCard from "./MeetingCard";
 import Loader from "./Loader";
 import { toast } from "sonner";
-import { Toaster } from "./ui/sonner";
 
 const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
     const { endedCalls, upcomingCalls, callRecordings, isLoading } = useGetCalls();
@@ -51,11 +49,12 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
                     
                 setRecordings(fetchedRecordings);
             } catch (error) {
+                console.error("Error fetching recordings:", error);
                 toast("Try again later");
             }
         }
         if(type === 'recordings' && !isLoading) {
-            setTimeout(fetchRecordings(), 500);
+            fetchRecordings();
         }
     }, [type, callRecordings, isLoading]);
 
