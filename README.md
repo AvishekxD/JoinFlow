@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📹 JoinFlow – Video Conferencing App
 
-## Getting Started
+JoinFlow is a full-featured, modern video conferencing platform built with cutting-edge technologies like **Next.js**, **TypeScript**, **Tailwind CSS**, **Clerk**, **ShadCN UI**, and **GetStream.io**. It allows users to host and join meetings, chat, and manage calls with ease.
 
-First, run the development server:
+---
 
-```bash
+## 🌐 Live Demo
+https://join-flow.vercel.app/
+
+---
+
+## 📸 Screenshots
+
+<img src="/public/images/ProjectPic1.png" alt="ProjectPic" width="600" height="430"/>
+<img src="/public/images/ProjectPic2.png" alt="ProjectPic" width="600" height="430"/>
+<img src="/public/images/ProjectPic2.png" alt="ProjectPic" width="600" height="430"/>
+
+---
+
+## ✨ Features
+
+
+- 🔐 Authentication with Clerk
+- 📞 Video calling using GetStream.io
+- 💬 Real-time chat integration
+- 🧭 Protected routing and layouts
+- 📋 Dynamic call history (Join, Leave, End)
+- ⚙️ Responsive UI with ShadCN UI + Tailwind CSS
+- 🔄 Reusable hooks & utility-based architecture
+
+---
+
+## 🛠 Tech Stack
+
+| Area         | Tech Used                               |
+|--------------|-----------------------------------------|
+| Frontend     | Next.js 14 (App Router) + TypeScript    |
+| Styling      | Tailwind CSS, ShadCN UI                 |
+| Auth         | Clerk                                   |
+| Video & Chat | GetStream.io                            |
+| State Mgmt   | React Hooks                             |
+| Hosting      | Vercel (Recommended)                    |
+
+---
+
+## 📁 Folder Structure
+
+```txt
+.
+├── actions/                 # Server actions
+│   └── stream.actions.ts
+│
+├── app/                    # Next.js App Router (auth, routes, layout)
+│   ├── (auth)/
+│   ├── (root)/
+│   ├── globals.css
+│   └── layout.tsx
+│
+├── components/
+│   ├── ui/                 # Reusable UI elements
+│   │   ├── CallList.tsx
+│   │   ├── EndcallButton.tsx
+│   │   ├── HomeCard.tsx
+│   │   ├── Loader.tsx
+│   │   ├── MeetingCard.tsx
+│   │   ├── MeetingModel.tsx
+│   │   ├── MeetingRoom.tsx
+│   │   ├── MeetingSetup.tsx
+│   │   ├── MeetingTypeList.tsx
+│   │   ├── MobileNav.tsx
+│   │   ├── Navbar.tsx
+│   │   └── Sidebar.tsx
+│
+├── constants/
+│   └── index.ts
+│
+├── hooks/
+│   ├── useGetCallById.ts
+│   └── useGetCalls.ts
+│
+├── lib/
+│   └── utils.ts
+│
+├── providers/              # Context providers (Clerk, Theme, etc.)
+│
+├── public/
+│   ├── icons/
+│   └── images/
+│
+├── src/                    # Extra sources (optional)
+├── middleware.ts
+├── next.config.ts
+├── tailwind.config.ts
+├── tsconfig.json
+├── .env.local              # Environment variables
+└── README.md
+```
+---
+
+## 🔧 Getting Started
+
+1. Clone the repository
+
+git clone https://github.com/AvishekxD/JoinFlow
+cd JoinFlow
+
+2. Install dependencies
+
+npm install
+# or
+yarn install
+
+3. Setup environment variables
+Create a .env.local file and add:
+
+CLERK_PUBLISHABLE_KEY=your_key
+CLERK_SECRET_KEY=your_key
+NEXT_PUBLIC_STREAM_API_KEY=your_key
+STREAM_SECRET=your_key
+
+4. Run the development server
+
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 📄 License
+This project is licensed under the MIT License.
