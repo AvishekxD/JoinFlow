@@ -11,9 +11,9 @@ https://join-flow.vercel.app/
 
 ## 📸 Screenshots
 
-<img src="/public/images/ProjectPic1.png" alt="ProjectPic" width="600" height="430"/>
-<img src="/public/images/ProjectPic2.png" alt="ProjectPic" width="600" height="430"/>
-<img src="/public/images/ProjectPic2.png" alt="ProjectPic" width="600" height="430"/>
+<img src="/public/images/ProjectPic1.png" alt="ProjectPic" width="600" height="330"/>
+<img src="/public/images/ProjectPic2.png" alt="ProjectPic" width="600" height="330"/>
+<img src="/public/images/ProjectPic2.png" alt="ProjectPic" width="600" height="330"/>
 
 ---
 
