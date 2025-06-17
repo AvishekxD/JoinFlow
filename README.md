@@ -13,7 +13,7 @@ https://join-flow.vercel.app/
 
 <img src="/public/images/ProjectPic1.png" alt="ProjectPic" width="600" height="330"/>
 <img src="/public/images/ProjectPic2.png" alt="ProjectPic" width="600" height="330"/>
-<img src="/public/images/ProjectPic2.png" alt="ProjectPic" width="600" height="330"/>
+<img src="/public/images/ProjectPic3.png" alt="ProjectPic" width="600" height="330"/>
 
 ---
 
